@@ -15,3 +15,5 @@ class Community extends Component {
     )
   }
 }
+
+export default Community;

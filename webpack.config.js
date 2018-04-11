@@ -1,5 +1,4 @@
 var path = require('path');
-var webpack = require('webpack');
  
 module.exports = {
   entry: './client/src/index.js',
@@ -15,7 +14,7 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['env', 'react']
+          presets: ['es2015', 'react']
         }
       }
     ]

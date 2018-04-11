@@ -15,7 +15,7 @@ app.set('port', (process.env.PORT || 3000));
 app.use(parser.json());
 
 // Serve the client files
-app.use(express.static(__dirname + '/../../dist'));
+app.use(express.static(__dirname + '/../client/dist'));
 
 // Handle post requests
 app.post('/api/community', (req, res) => {

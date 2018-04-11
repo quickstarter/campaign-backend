@@ -1,5 +1,5 @@
-import react from 'react';
-import reactDOM from 'react-dom';
-import Community from './community';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Community from './community.jsx';
 
 ReactDOM.render(<Community />, document.getElementById('root'));
