@@ -1,0 +1,27 @@
+{
+  "name": "community-module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hack-reactor-fec/community-module.git"
+  },
+  "author": "Sam Getlan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hack-reactor-fec/community-module/issues"
+  },
+  "homepage": "https://github.com/hack-reactor-fec/community-module#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "faker": "^4.1.0",
+    "mongoose": "^5.0.14"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  }
+}
