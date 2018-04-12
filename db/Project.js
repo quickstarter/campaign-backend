@@ -4,6 +4,8 @@ mongoose.Promise = global.Promise;
 
 const projectSchema = new mongoose.Schema({
   id: Number,
+  title: String,
+  creator: String,
   backerIds: [Number]
 });
 

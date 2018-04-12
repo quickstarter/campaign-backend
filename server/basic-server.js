@@ -15,26 +15,17 @@ app.set('port', (process.env.PORT || 3000));
 app.use(parser.json());
 
 // Serve the client files
-app.use(express.static(__dirname + '/../../dist'));
+app.use(express.static(__dirname + '/../client/dist'));
 
-// Handle post requests
-app.post('/api/community', (req, res) => {
-  console.log(`Handling post request`);
-  utils.loadProject(req.body.id, (project) => {
-    console.log(`Retrieving backers from project:`, project);
-    utils.loadBackers(project[0].backerIds, (backers) => {
-      res.json(backers);
-    })
-  });
-})
 
 // Handle Get requests
-app.get('/api/community', (req, res) => {
+app.get('/api/community/:id', (req, res) => {
   console.log(`Handling get request`);
-  utils.loadProject(28, (project) => {
+  utils.loadProject(req.params.id, (project) => {
+    var project = project[0];
     console.log(`Retrieving backers from project:`, project);
-    utils.loadBackers(project[0].backerIds, (backers) => {
-      res.json(backers);
+    utils.loadBackers(project.backerIds, (backers) => {
+      res.json([project, backers]);
     })
   });
 })
