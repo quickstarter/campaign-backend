@@ -1,0 +1,17 @@
+$font-stack: "Karla", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+
+
+.TotalBackersContainer {
+  width: 100%;
+  display: flexbox;
+  padding: 8rem 0;
+  font-size: 14px;
+  border-bottom: 1px solid rgb(232, 232, 232);
+}
+
+.title {
+  font-family: $font-stack;
+  font-size: 21px;
+  text-align: center;
+}
