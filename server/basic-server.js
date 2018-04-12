@@ -22,9 +22,10 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.get('/api/community/:id', (req, res) => {
   console.log(`Handling get request`);
   utils.loadProject(req.params.id, (project) => {
+    var project = project[0];
     console.log(`Retrieving backers from project:`, project);
-    utils.loadBackers(project[0].backerIds, (backers) => {
-      res.json(backers);
+    utils.loadBackers(project.backerIds, (backers) => {
+      res.json([project, backers]);
     })
   });
 })
