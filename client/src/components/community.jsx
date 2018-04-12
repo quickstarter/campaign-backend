@@ -56,8 +56,10 @@ class Community extends Component {
     return (
       <div className="communityModuleContainer">
         <TotalBackers totalBackers={367} projectCreator={'notAirBnB'} />
-        <BackersCities />
-        <BackersCountries />
+        <div className="communityLocationDataContainer">
+          <BackersCities />
+          <BackersCountries />
+        </div>
         <NewAndOldBackers />
         <RollCall backers={fakeBackers}/>
       </div>

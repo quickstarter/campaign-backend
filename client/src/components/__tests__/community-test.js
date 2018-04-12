@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { shallow, mount, render } from 'enzyme';
 import renderer from 'react-test-renderer';
-import Community from '../Community.jsx';
+import Community from '../community.jsx';
 
 
 
