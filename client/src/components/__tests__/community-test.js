@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { shallow, mount, render } from 'enzyme';
 import renderer from 'react-test-renderer';
-import Community from '../community.jsx';
+import Community from '../Community.jsx';
 
 
 
@@ -10,6 +10,8 @@ describe('Community Component', () => {
 
   // make our assertion and what we expect to happen
   it('should render without throwing an error', () => {
-    expect(shallow(<Community />).find('h1').length).toEqual(1)
-  })
-})
+    expect(shallow(<Community />).find('.communityModuleContainer').length).toEqual(1);
+  });
+});
+
+

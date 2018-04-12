@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import TotalBackers from './TotalBackers.jsx';
-import BackersCities from './BackersCities.jsx';
-import BackersCountries from './BackersCountries.jsx';
-import NewAndOldBackers from './NewAndOldBackers.jsx';
-import RollCall from './RollCall.jsx';
-
+import { shallow, mount, render } from 'enzyme';
+import renderer from 'react-test-renderer';
+import RollCall from '../RollCall.jsx';
 
 var fakeBackers = [{
   name: 'Cameron Fielder',
@@ -40,29 +37,9 @@ var fakeBackers = [{
   projectsBacked: 3
 }];
 
-class Community extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: null,
-      creator: null,
-      backers: null
-    }
-  }
+describe('RollCall Component', () => {
 
-
-
-  render() {
-    return (
-      <div className="communityModuleContainer">
-        <TotalBackers totalBackers={367} projectCreator={'notAirBnB'} />
-        <BackersCities />
-        <BackersCountries />
-        <NewAndOldBackers />
-        <RollCall backers={fakeBackers}/>
-      </div>
-    );
-  }
-}
-
-export default Community;
+  it('should render without throwing an error', () => {
+    expect(shallow(<RollCall backers={fakeBackers}/>).find('.RollCallContainer').length).toEqual(1);
+  });
+});

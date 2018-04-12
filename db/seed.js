@@ -28,6 +28,7 @@ for (var i = 0; i < 100; i++) {
   var project = {};
   var n = Math.floor(Math.random() * 1000);
   project.id = i;
+  project.title = faker.commerce.productName();
   project.creator = faker.company.companyName();
   project.backerIds = [];
   for (var k = 0; k < n; k++) {
