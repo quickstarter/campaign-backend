@@ -11,15 +11,17 @@ const RollCall = (props) => {
         props.backers.slice(0, 8).map((backer) => {
           return (
             <div className="backerContainer">
-              <div className="backerAvatar"><img src={backer.avatar}/></div>
-              <div className="backerName">{backer.name}</div>
-              <div className="backerProjectsBacked">{backer.projectsBacked}</div>
+              <div className="backerSubContainer">
+                <div className="backerAvatar"><img src={backer.avatar}/></div>
+                <div className="backerName">{backer.name}</div>
+                <div className="backerProjectsBacked">Backed {backer.projectsBacked} {backer.projectsBacked === 1 ? 'project' : 'projects'}</div>
+              </div>
             </div>
           );  
         })
       }
+        <button id="seeMoreBackers">See more!</button>
       </div>
-      <button id="seeMoreBackers">See more!</button>
     </div>
   );
 }
