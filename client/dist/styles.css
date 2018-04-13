@@ -7,16 +7,84 @@
 }
 
 .title {
-  font-family: "Karla", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 21px;
   text-align: center;
 }
 
-html {
-  font-size: 10px;
-}
-
 .communityLocationDataContainer {
   padding: 4.2rem 0;
-  display: flexbox;
+  display: flex;
+  max-width: 1040px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.BackersCountriesContainer, .BackersCitiesContainer {
+  width: 50%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.BackersCountriesContainer .title, .BackersCitiesContainer .title {
+  line-height: 1.5;
+}
+
+.BackersCitiesContainer {
+  padding-left: 1.8rem;
+  padding-right: 2.7rem;
+}
+
+.BackersCountriesContainer {
+  padding-left: 2.7rem;
+  padding-right: 1.8rem;
+}
+
+.titleWithBottomBorder {
+  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: 3rem;
+}
+
+.cityInlineElement, .countryInlineElement {
+  margin-bottom: 1.2rem;
+  vertical-align: baseline;
+  font-size: 100%;
+  display: flex;
+}
+
+.city {
+  font-size: 14px;
+  margin-right: 2.5rem;
+}
+
+.country {
+  font-size: 12px;
+}
+
+.backerCount {
+  font-size: 12px;
+  vertical-align: baseline;
+}
+
+.leftSide {
+  width: 65%;
+}
+
+.rightSide {
+  width: 35%;
+  text-align: right;
+}
+
+a {
+  text-decoration-line: none;
+}
+
+.countryInlineElement .country {
+  font-size: 14px;
+}
+
+html {
+  font-size: 10px;
+  font-family: "Karla", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
