@@ -1,4 +1,85 @@
+@mixin box-sizing($type) {
+  -webkit-box-sizing: $type;
+     -moz-box-sizing: $type;
+      -ms-box-sizing: $type;
+       -o-box-sizing: $type;
+          box-sizing: $type;
+}
+
+
+
+
 .communityLocationDataContainer {
   padding: 4.2rem 0;
-  display: flexbox;
+  display: flex;
+  max-width: 1040px;
+  margin-right: auto;
+  margin-left: auto;
 }
+
+
+%locationData-shared {
+  width: 50%;
+  @include box-sizing(border-box);
+  .title {
+    line-height: 1.5;
+  }
+}
+
+
+.BackersCitiesContainer {
+  @extend %locationData-shared;
+  padding-left: 1.8rem;
+  padding-right: 2.7rem;
+}
+
+.BackersCountriesContainer {
+  @extend %locationData-shared;
+  padding-left: 2.7rem;
+  padding-right: 1.8rem;
+}
+
+.titleWithBottomBorder {
+  border-bottom: 1px solid rgb(232, 232, 232);
+  margin-bottom: 3rem;
+}
+
+.cityInlineElement, .countryInlineElement {
+  margin-bottom: 1.2rem;
+  vertical-align: baseline;
+  font-size: 100%;
+  display: flex;
+}
+
+.city {
+  font-size: 14px;
+  margin-right: 2.5rem;
+}
+
+.country {
+  font-size: 12px;
+}
+
+.backerCount {
+  font-size: 12px;
+  vertical-align: baseline;
+}
+
+.leftSide {
+  width: 65%;
+}
+.rightSide {
+  width: 35%;
+  text-align: right;
+}
+
+a {
+  text-decoration-line: none;
+}
+
+.countryInlineElement {
+  .country {
+    font-size: 14px;
+  }
+}
+

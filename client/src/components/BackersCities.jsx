@@ -6,33 +6,43 @@ class BackersCities extends Component {
     this.state = {
       cities: [{
         name: 'New York City',
+        country: 'United States',
         backers: 23
       },{
         name: 'New York City',
+        country: 'United States',
         backers: 23
       }, {
         name: 'New York City',
+        country: 'United States',
         backers: 23
       }, {
         name: 'New York City',
+        country: 'United States',
         backers: 23
       }, {
         name: 'New York City',
+        country: 'United States',
         backers: 23
       }, {
         name: 'New York City',
+        country: 'United States',
+        backers: 23578341
+      }, {
+        name: 'New York City',
+        country: 'United States',
         backers: 23
       }, {
         name: 'New York City',
+        country: 'United States',
         backers: 23
       }, {
         name: 'New York City',
+        country: 'United States',
         backers: 23
       }, {
         name: 'New York City',
-        backers: 23
-      }, {
-        name: 'New York City',
+        country: 'United States',
         backers: 23
       }]
     };
@@ -48,20 +58,22 @@ class BackersCities extends Component {
     return (
     <div className="BackersCitiesContainer">
       <div className="title">Where Backers Come From</div>
-      <div className="title">Top Cities</div>
-      <div className="topCitiesContainer">
-        <div className="cityDetailsContainer">{
-          this.state.cities.slice(0, 10).map((city) => {
-            return (
-              <div className="cityInlineElement">
-                <div className="city">{city.name}</div>
-                <div className="country">{city.country}</div>
-                <div className="backerCount">{city.backers}</div>
+      <div className="title titleWithBottomBorder">Top Cities</div>
+      <div className="cityDetailsContainer">{
+        this.state.cities.slice(0, 10).map((city) => {
+          return (
+            <div className="cityInlineElement">
+              <div className="leftSide">
+                <a className="city" href={`https://en.wikipedia.org/wiki/${city.name}`}>{city.name}</a>
+                <a className="country" href={`https://en.wikipedia.org/wiki/${city.country}`}>{city.country}</a>
               </div>
-            );
-          })
-        }
-        </div>
+              <div className="rightSide">
+                <div className="backerCount">{`${city.backers.toLocaleString('en', {useGrouping:true})} backers`}</div>
+              </div>
+            </div>
+          );
+        })
+      }
       </div>
     </div>
     )
