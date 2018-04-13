@@ -8,7 +8,7 @@ import RollCall from './RollCall.jsx';
 
 var fakeBackers = [{
   name: 'Cameron Fielder',
-  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/leandrovaranda/128.jpg',
+  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/tjisousa/128.jpg',
   projectsBacked: 3
 }, {
   name: 'Cameron Fielder',
@@ -61,7 +61,7 @@ class Community extends Component {
           <BackersCountries />
         </div>
         <NewAndOldBackers />
-        <RollCall backers={fakeBackers}/>
+        <RollCall backers={fakeBackers} projectTitle='Real Fake Doors'/>
       </div>
     );
   }
