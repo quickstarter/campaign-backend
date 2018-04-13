@@ -1,0 +1,48 @@
+$border: 1px solid rgb(232, 232, 232);
+
+.NewAndOldBackersContainer {
+  max-width: 1040px;
+  margin-right: auto;
+  margin-left: auto;
+  border: $border;
+  display: flex;
+  margin-bottom: 8.4rem;
+}
+
+.NewAndOldBackersContent {
+  display: flex;
+  padding: 4rem;
+  width: 100%;
+  text-align: center;
+}
+
+%backersContainer-shared {
+  width: 50%;
+  .backerCount {
+    font-size: 95px;
+    padding: 3rem 0;
+}
+}
+
+.newBackersContainer {
+  @extend %backersContainer-shared;
+  border-right: $border;
+}
+
+.oldBackersContainer {
+  @extend %backersContainer-shared;
+}
+
+.subTitle {
+  font-size: 14px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.supText {
+  font-size: 1.4rem;
+  width: 50%;
+  margin: 0 auto;
+  color: rgb(120, 120, 120);
+}
+
