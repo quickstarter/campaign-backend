@@ -22,6 +22,7 @@
     "setupTestFrameworkScriptFile": "<rootDir>/test-setup.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "express": "^4.16.3",
     "faker": "^4.1.0",
     "mongoose": "^5.0.14",
