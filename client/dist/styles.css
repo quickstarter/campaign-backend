@@ -84,6 +84,47 @@ a {
   font-size: 14px;
 }
 
+.NewAndOldBackersContainer {
+  max-width: 1040px;
+  margin-right: auto;
+  margin-left: auto;
+  border: 1px solid #e8e8e8;
+  display: flex;
+  margin-bottom: 8.4rem;
+}
+
+.NewAndOldBackersContent {
+  display: flex;
+  padding: 4rem;
+  width: 100%;
+  text-align: center;
+}
+
+.oldBackersContainer, .newBackersContainer {
+  width: 50%;
+}
+.oldBackersContainer .backerCount, .newBackersContainer .backerCount {
+  font-size: 95px;
+  padding: 3rem 0;
+}
+
+.newBackersContainer {
+  border-right: 1px solid #e8e8e8;
+}
+
+.subTitle {
+  font-size: 14px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.supText {
+  font-size: 1.4rem;
+  width: 50%;
+  margin: 0 auto;
+  color: #787878;
+}
+
 html {
   font-size: 10px;
   font-family: "Karla", "Helvetica Neue", Helvetica, Arial, sans-serif;
