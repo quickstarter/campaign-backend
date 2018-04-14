@@ -4,14 +4,30 @@ class NewAndOldBackers extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newBackers: 1057,
-      oldBackers: 2113
+      newBackers: 0,
+      oldBackers: 0
     };
   }
 
 
-  componentWillMount() {
-
+  componentDidUpdate() {
+    let backers = this.props.backers;
+    console.log(backers);
+    let newBackers = 0;
+    let oldBackers = 0;
+    for (var i = 0; i < backers.length; i++) {
+      if (backers[i].fundedProjects === 0) {
+        newBackers++;
+      } else {
+        oldBackers++;
+      }
+    }
+    if (this.state.newBackers !== newBackers || this.state.oldBackers !== oldBackers) {
+      this.setState({
+        newBackers: newBackers,
+        oldBackers: oldBackers
+      })
+    }
   }
 
 
