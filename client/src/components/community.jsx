@@ -7,65 +7,43 @@ import RollCall from './RollCall.jsx';
 import axios from 'axios';
 
 
-var fakeBackers = [{
-  name: 'Cameron Fielder',
-  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/tjisousa/128.jpg',
-  projectsBacked: 3
-}, {
-  name: 'Cameron Fielder',
-  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/leandrovaranda/128.jpg',
-  projectsBacked: 1
-}, {
-  name: 'Cameron Fielder',
-  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/leandrovaranda/128.jpg',
-  projectsBacked: 3
-}, {
-  name: 'Cameron Fielder',
-  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/leandrovaranda/128.jpg',
-  projectsBacked: 3
-}, {
-  name: 'Cameron Fielder',
-  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/leandrovaranda/128.jpg',
-  projectsBacked: 3
-}, {
-  name: 'Cameron Fielder',
-  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/leandrovaranda/128.jpg',
-  projectsBacked: 3
-}, {
-  name: 'Cameron Fielder',
-  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/leandrovaranda/128.jpg',
-  projectsBacked: 3
-}, {
-  name: 'Cameron Fielder',
-  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/leandrovaranda/128.jpg',
-  projectsBacked: 3
-}];
-
 class Community extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: null,
-      creator: null,
-      backers: null
+      title: '',
+      creator: '',
+      backers: []
     }
   }
 
-  // componentDidMount() {
-  //   axios.get('')
-  // }
+  componentWillMount() {
+    let context = this;
+    axios.get(`/api/community/${this.props.projectId}`)
+      .then((response) => {
+        console.log('response:', response);
+        context.setState({
+          title: response.data[0].title,
+          creator: response.data[0].creator,
+          backers: response.data[1]
+        });
+      })
+      .catch((error) => {
+        console.log('There was an error fetching this project:', error);
+      });
+  }
 
 
   render() {
     return (
       <div className="communityModuleContainer">
-        <TotalBackers totalBackers={367} projectCreator={'notAirBnB'} />
+        <TotalBackers totalBackers={this.state.backers.length} projectCreator={this.state.creator} />
         <div className="communityLocationDataContainer">
-          <BackersCities />
-          <BackersCountries />
+          <BackersCities backers={this.state.backers}/>
+          <BackersCountries backers={this.state.backers}/>
         </div>
-        <NewAndOldBackers />
-        <RollCall backers={fakeBackers} projectTitle='Real Fake Doors'/>
+        <NewAndOldBackers backers={this.state.backers}/>
+        <RollCall backers={this.state.backers} projectTitle={this.state.title}/>
       </div>
     );
   }

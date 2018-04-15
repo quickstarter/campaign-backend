@@ -4,52 +4,33 @@ class BackersCities extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cities: [{
-        name: 'New York City',
-        country: 'United States',
-        backers: 23
-      },{
-        name: 'New York City',
-        country: 'United States',
-        backers: 23
-      }, {
-        name: 'New York City',
-        country: 'United States',
-        backers: 23
-      }, {
-        name: 'New York City',
-        country: 'United States',
-        backers: 23
-      }, {
-        name: 'New York City',
-        country: 'United States',
-        backers: 23
-      }, {
-        name: 'New York City',
-        country: 'United States',
-        backers: 23578341
-      }, {
-        name: 'New York City',
-        country: 'United States',
-        backers: 23
-      }, {
-        name: 'New York City',
-        country: 'United States',
-        backers: 23
-      }, {
-        name: 'New York City',
-        country: 'United States',
-        backers: 23
-      }, {
-        name: 'New York City',
-        country: 'United States',
-        backers: 23
-      }]
+      cities: []
     };
   }
 
-  componentWillMount() {
-
+  componentDidUpdate() {
+    let backers = this.props.backers;
+    let cities = {};
+    let topCities = [];
+    for (var i = 0; i < backers.length; i++) {
+      if (cities[backers[i].city]) {
+        cities[backers[i].city]++;
+      } else {
+        cities[backers[i].city] = 1;
+      }
+    }
+    for (var j = 0; j < 10; j++) {
+      var city = Object.keys(cities).reduce(function(a, b) {
+        return cities[a] > cities[b] ? a : b
+      });
+      topCities.push({name: city, backers: cities[city]});
+      delete cities[city];
+    }
+    if (this.state.cities !== topCities) {
+      this.setState({
+        cities: topCities
+      });
+    }
   }
 
 

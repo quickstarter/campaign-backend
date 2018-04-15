@@ -14,7 +14,7 @@ const RollCall = (props) => {
               <div className="backerSubContainer">
                 <div className="backerAvatar"><img src={backer.avatar}/></div>
                 <div className="backerName">{backer.name}</div>
-                <div className="backerProjectsBacked">Backed {backer.projectsBacked} {backer.projectsBacked === 1 ? 'project' : 'projects'}</div>
+                <div className="backerProjectsBacked">Backed {backer.fundedProjects} {backer.fundedProjects === 1 ? 'project' : 'projects'}</div>
               </div>
             </div>
           );  
