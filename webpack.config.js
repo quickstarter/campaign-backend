@@ -1,12 +1,12 @@
-var path = require('path');
- 
+const path = require('path');
+
 module.exports = {
   entry: './client/src/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'client/dist')
+    path: path.resolve(__dirname, 'client/dist'),
   },
-  devtool: "#eval-source-map",
+  devtool: '#eval-source-map',
   module: {
     rules: [
       {
@@ -14,10 +14,10 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['es2015', 'react']
-        }
-      }
-    ]
+          presets: ['es2015', 'react'],
+        },
+      },
+    ],
   },
-  watch: true
- };
+  watch: true,
+};
