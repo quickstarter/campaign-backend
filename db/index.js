@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-const mongoUri = 'mongodb://localhost/communityModule';
 
-const db = mongoose.connect(mongoUri);
+const mongoUrl = 'mongodb://localhost/communityModule';
+
+const db = mongoose.connect(mongoUrl);
 
 module.exports = db;

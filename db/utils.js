@@ -1,19 +1,21 @@
 const Project = require('./Project.js').project;
+const db = require('./index.js');
 const User = require('./Project.js').user;
 
 function loadProject(projectId, callback) {
-  Project.find({id: projectId}, null, null, (error, project) => {
+  console.log('inside Project.find');
+  Project.find({ id: projectId }, null, null, (error, project) => {
     if (error) {
       console.log('There has been an error retrieving this project:', error);
     } else {
+      console.log('Stuff!');
       callback(project);
     }
   });
 }
 
 function loadBackers(backerIds, callback) {
-  console.log(backerIds);
-  User.find({id: { $in: backerIds } }, null, null, (error, backers) => {
+  User.find({ id: { $in: backerIds } }, null, null, (error, backers) => {
     if (error) {
       console.log('There has been an error retrieving backer information:', error);
     } else {
@@ -21,7 +23,6 @@ function loadBackers(backerIds, callback) {
     }
   });
 }
-
 
 
 module.exports.loadProject = loadProject;

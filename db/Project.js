@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
-const db = require('./index.js');
+
 mongoose.Promise = global.Promise;
 
 const projectSchema = new mongoose.Schema({
   id: Number,
   title: String,
   creator: String,
-  backerIds: [Number]
+  backerIds: [Number],
 });
 
 const userSchema = new mongoose.Schema({
@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
   city: String,
   country: String,
   fundedProjects: Number,
-  avatar: String
+  avatar: String,
 });
 
 const Project = mongoose.model('Project', projectSchema);
