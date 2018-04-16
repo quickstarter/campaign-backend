@@ -9,7 +9,7 @@ class BackersCities extends Component {
   }
 
   componentDidUpdate() {
-    const backers = this.props.backers;
+    const { backers } = this.props;
     const cities = {};
     const topCities = [];
     for (let i = 0; i < backers.length; i++) {

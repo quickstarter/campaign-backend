@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import TotalBackers from './TotalBackers.jsx';
 import BackersCities from './BackersCities.jsx';
 import BackersCountries from './BackersCountries.jsx';
 import NewAndOldBackers from './NewAndOldBackers.jsx';
 import RollCall from './RollCall.jsx';
-import axios from 'axios';
 
 
 class Community extends Component {
@@ -21,7 +21,6 @@ class Community extends Component {
     const context = this;
     axios.get(`/api/community/${this.props.projectId}`)
       .then((response) => {
-        console.log('response:', response);
         context.setState({
           title: response.data[0].title,
           creator: response.data[0].creator,

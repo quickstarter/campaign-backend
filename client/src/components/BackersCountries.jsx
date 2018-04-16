@@ -10,7 +10,7 @@ class BackersCountries extends Component {
 
 
   componentDidUpdate() {
-    const backers = this.props.backers;
+    const { backers } = this.props;
     const countries = {};
     const topCountries = [];
     for (let i = 0; i < backers.length; i++) {

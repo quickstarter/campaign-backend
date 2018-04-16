@@ -10,7 +10,6 @@ class RollCall extends Component {
   }
 
   checkMoreBackers() {
-    console.log('inside checkMoreBackers');
     this.setState({
       nextBacker: (this.state.nextBacker + 8),
     });

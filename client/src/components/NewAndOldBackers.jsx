@@ -11,8 +11,7 @@ class NewAndOldBackers extends Component {
 
 
   componentDidUpdate() {
-    const backers = this.props.backers;
-    console.log(backers);
+    const { backers } = this.props;
     let newBackers = 0;
     let oldBackers = 0;
     for (let i = 0; i < backers.length; i++) {
@@ -22,10 +21,6 @@ class NewAndOldBackers extends Component {
         oldBackers++;
       }
     }
-    console.log(newBackers);
-    console.log(this.state.newBackers);
-    console.log(oldBackers);
-    console.log(this.state.oldBackers);
     if (this.state.newBackers !== newBackers || this.state.oldBackers !== oldBackers) {
       this.setState({
         newBackers,
