@@ -13,19 +13,19 @@ class Community extends Component {
     this.state = {
       title: '',
       creator: '',
-      backers: []
-    }
+      backers: [],
+    };
   }
 
-  componentWillMount() {
-    let context = this;
+  componentDidMount() {
+    const context = this;
     axios.get(`/api/community/${this.props.projectId}`)
       .then((response) => {
         console.log('response:', response);
         context.setState({
           title: response.data[0].title,
           creator: response.data[0].creator,
-          backers: response.data[1]
+          backers: response.data[1],
         });
       })
       .catch((error) => {
@@ -39,11 +39,11 @@ class Community extends Component {
       <div className="communityModuleContainer">
         <TotalBackers totalBackers={this.state.backers.length} projectCreator={this.state.creator} />
         <div className="communityLocationDataContainer">
-          <BackersCities backers={this.state.backers}/>
-          <BackersCountries backers={this.state.backers}/>
+          <BackersCities backers={this.state.backers} />
+          <BackersCountries backers={this.state.backers} />
         </div>
-        <NewAndOldBackers backers={this.state.backers}/>
-        <RollCall backers={this.state.backers} projectTitle={this.state.title}/>
+        <NewAndOldBackers backers={this.state.backers} />
+        <RollCall backers={this.state.backers} projectTitle={this.state.title} />
       </div>
     );
   }

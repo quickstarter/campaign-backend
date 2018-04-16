@@ -199,6 +199,15 @@ a {
   cursor: pointer;
 }
 
+#seeMoreBackers:focus {
+  outline: none;
+}
+
+#seeMoreBackers:active {
+  outline: 1px solid #282828;
+  outline-offset: 2px;
+}
+
 html {
   font-size: 10px;
   font-family: "Karla", "Helvetica Neue", Helvetica, Arial, sans-serif;
