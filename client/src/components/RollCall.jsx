@@ -24,8 +24,8 @@ class RollCall extends Component {
           <div className="title">Here are a few of the people supporting {this.props.projectTitle}</div>
         </div>
         <div className="backersGridContainer">{
-          this.props.backers.slice(this.state.nextBacker, (this.state.nextBacker + 8)).map(backer => (
-            <div className="backerContainer">
+          this.props.backers.slice(this.state.nextBacker, (this.state.nextBacker + 8)).map((backer, index) => (
+            <div className="backerContainer" key={`Backer${index + this.state.nextBacker}`}>
               <div className="backerSubContainer">
                 <div className="backerAvatar"><img src={backer.avatar} alt="user avatar" /></div>
                 <div className="backerName">{backer.name.length > 15 ? (`${backer.name.slice(0, 12)}...`) : backer.name}</div>
