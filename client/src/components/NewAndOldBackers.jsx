@@ -5,17 +5,16 @@ class NewAndOldBackers extends Component {
     super(props);
     this.state = {
       newBackers: 0,
-      oldBackers: 0
+      oldBackers: 0,
     };
   }
 
 
   componentDidUpdate() {
-    let backers = this.props.backers;
-    console.log(backers);
+    const { backers } = this.props;
     let newBackers = 0;
     let oldBackers = 0;
-    for (var i = 0; i < backers.length; i++) {
+    for (let i = 0; i < backers.length; i++) {
       if (backers[i].fundedProjects === 0) {
         newBackers++;
       } else {
@@ -24,9 +23,9 @@ class NewAndOldBackers extends Component {
     }
     if (this.state.newBackers !== newBackers || this.state.oldBackers !== oldBackers) {
       this.setState({
-        newBackers: newBackers,
-        oldBackers: oldBackers
-      })
+        newBackers,
+        oldBackers,
+      });
     }
   }
 
@@ -37,12 +36,12 @@ class NewAndOldBackers extends Component {
         <div className="NewAndOldBackersContent">
           <div className="newBackersContainer">
             <div className="subTitle">New Backers</div>
-            <div className="backerCount">{`${this.state.newBackers.toLocaleString('en', {useGrouping:true})}`}</div>
+            <div className="backerCount">{`${this.state.newBackers.toLocaleString('en', { useGrouping: true })}`}</div>
             <div className="supText">backers had never backed a project on Kickstarter before</div>
           </div>
           <div className="oldBackersContainer">
             <div className="subTitle">Returning Backers</div>
-            <div className="backerCount">{`${this.state.oldBackers.toLocaleString('en', {useGrouping:true})}`}</div>
+            <div className="backerCount">{`${this.state.oldBackers.toLocaleString('en', { useGrouping: true })}`}</div>
             <div className="supText">backers had backed a project on Kickstarter before</div>
           </div>
         </div>
