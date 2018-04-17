@@ -24,8 +24,6 @@ class BackersCities extends Component {
       topCities.push({ name: city, backers: cities[city] });
       delete cities[city];
     }
-    console.log(this.state.cities);
-    console.log(topCities);
     if (this.state.cities.length !== topCities.length) {
       this.setState({
         cities: topCities,

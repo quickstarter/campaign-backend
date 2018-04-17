@@ -3,12 +3,10 @@ const db = require('./index.js');
 const User = require('./Project.js').user;
 
 function loadProject(projectId, callback) {
-  console.log('inside Project.find');
   Project.find({ id: projectId }, null, null, (error, project) => {
     if (error) {
       console.log('There has been an error retrieving this project:', error);
     } else {
-      console.log('Stuff!');
       callback(project);
     }
   });
