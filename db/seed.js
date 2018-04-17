@@ -4,14 +4,12 @@ const User = require('./Project.js').user;
 const Project = require('./Project.js').project;
 
 
+const users = [];
 
-
-var users = [];
-
-for (var i = 0; i < 1000; i++) {
-  var user = {};
+for (let i = 0; i < 1000; i++) {
+  const user = {};
   user.id = i;
-  user.name = `${faker.name.firstName()} ${faker.name.lastName()}`
+  user.name = `${faker.name.firstName()} ${faker.name.lastName()}`;
   user.city = faker.address.city();
   user.country = faker.address.country();
   user.avatar = faker.image.avatar();
@@ -22,17 +20,17 @@ for (var i = 0; i < 1000; i++) {
 console.log(users);
 
 
-var projects = [];
+const projects = [];
 
-for (var i = 0; i < 100; i++) {
-  var project = {};
-  var n = Math.floor(Math.random() * 1000);
+for (let i = 0; i < 100; i++) {
+  const project = {};
+  const n = Math.floor(Math.random() * 1000);
   project.id = i;
   project.title = faker.commerce.productName();
   project.creator = faker.company.companyName();
   project.backerIds = [];
-  for (var k = 0; k < n; k++) {
-    var backerId = Math.floor(Math.random() * 1000);
+  for (let k = 0; k < n; k++) {
+    const backerId = Math.floor(Math.random() * 1000);
     if (!project.backerIds.includes(backerId)) {
       project.backerIds.push(backerId);
     }
@@ -43,16 +41,16 @@ for (var i = 0; i < 100; i++) {
 console.log(projects);
 
 
-const insertUsers = function() {
+const insertUsers = () => {
   User.create(users)
     .then(() => db.disconnect());
 };
 
 insertUsers();
 
-const insertProjects = function() {
+const insertProjects = () => {
   Project.create(projects)
     .then(() => db.disconnect());
-}
+};
 
 insertProjects();
