@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "build": "webpack",
     "style": "sass ./client/src/stylesheets/base.scss ./client/dist/styles.css"
   },
