@@ -8,7 +8,7 @@ const app = express();
 module.exports.app = app;
 
 // Set what we are listening on.
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 3005));
 
 // Logging and parsing
 app.use(parser.json());
