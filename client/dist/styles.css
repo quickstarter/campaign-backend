@@ -142,6 +142,8 @@ a {
 .backersGridContainer {
   display: flex;
   flex-wrap: wrap;
+  max-width: 1040px;
+  margin: auto;
 }
 
 .backerContainer {
