@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --coverage",
     "build": "webpack",
-    "style": "sass ./client/src/stylesheets/base.scss ./client/dist/styles.css"
+    "style": "sass ./client/src/stylesheets/base.scss ./client/dist/styles.css",
+    "start": "nodemon server/basic-server.js"
   },
   "repository": {
     "type": "git",
@@ -41,7 +42,6 @@
     "babel-preset-react": "^6.24.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "jest": "^22.4.3",
     "jest-enzyme": "^6.0.0",
     "nodemon": "^1.17.3",
