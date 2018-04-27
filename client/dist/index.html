@@ -12,5 +12,12 @@
     </noscript>
   <div id="Community"></div>
   <script src="bundle.js"></script>
+  <script>
+    const project = window.location.href.split('?')[1];
+    ReactDOM.render(
+      React.createElement(Community, {projectId: project}),
+      document.getElementById('Community')
+    );
+  </script>
 </body>
 </html>
