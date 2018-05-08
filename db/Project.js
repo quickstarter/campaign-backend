@@ -1,16 +1,14 @@
 const mongoose = require('mongoose');
 
-mongoose.Promise = global.Promise;
-
 const projectSchema = new mongoose.Schema({
-  id: Number,
+  _id: Number,
   title: String,
   creator: String,
   backerIds: [Number],
 });
 
 const userSchema = new mongoose.Schema({
-  id: Number,
+  _id: Number,
   name: String,
   city: String,
   country: String,
@@ -18,9 +16,8 @@ const userSchema = new mongoose.Schema({
   avatar: String,
 });
 
-const Project = mongoose.model('Project', projectSchema);
-
-const User = mongoose.model('User', userSchema);
+const Project = mongoose.model('projects', projectSchema);
+const User = mongoose.model('users', userSchema);
 
 module.exports.project = Project;
 module.exports.user = User;
