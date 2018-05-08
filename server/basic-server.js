@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 const cors = require('cors');
 const parser = require('body-parser');
@@ -33,7 +34,10 @@ app.use(cors());
 app.get('/api/community/:id', (req, res) => {
   const { id } = req.params;
   console.log(`Handling get request for project ${id}`);
-  pool.query(`SELECT * 
+  pool.query(`
+    SELECT title, creator, backers, 
+      name, city, country, avatar, 
+      projects_backed AS "fundedProjects"
     FROM quickstarter.projects 
     INNER JOIN quickstarter.projects_backers 
       ON quickstarter.projects.id = quickstarter.projects_backers.project
