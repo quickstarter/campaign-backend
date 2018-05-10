@@ -1,0 +1,19 @@
+config:
+  target: "http://127.0.0.1:3006"
+  phases:
+    - duration: 120
+      arrivalRate: 10
+
+scenarios:
+  - name: "Look at a random project"
+    flow:
+      - loop:
+        - get:
+            url: "/api/community/{{ $randomNumber(1,10000000) }}"
+        count: 100
+  - name: "Look at one of top 10000 projects"
+    flow:
+      - loop:
+        - get:
+            url: "/api/community/{{ $randomNumber(1,10000) }}"
+        count: 100
