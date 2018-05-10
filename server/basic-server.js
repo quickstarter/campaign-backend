@@ -2,25 +2,10 @@ require('newrelic');
 const express = require('express');
 const cors = require('cors');
 const parser = require('body-parser');
-const redis = require('redis');
-const bluebird = require('bluebird');
 const cluster = require('cluster');
 const cpuCount = require('os').cpus().length;
-const { Pool } = require('pg');
 
-const pool = new Pool({
-  user: 'samliebow',
-  password: 'sdc',
-  host: '127.0.0.1',
-  database: 'quickstarter',
-});
-
-bluebird.promisifyAll(redis.RedisClient.prototype);
-bluebird.promisifyAll(redis.Multi.prototype);
-
-const client = redis.createClient();
-client.on('error', err => console.error(err));
-client.on('connect', () => console.log(`Redis connected for ${process.pid}`));
+const { pool, client } = require('../db/connect.js');
 
 if (cluster.isMaster && cpuCount > 1) {
   console.log(`Master ${process.pid} started`);
@@ -60,7 +45,7 @@ if (cluster.isMaster && cpuCount > 1) {
           INNER JOIN quickstarter.users
             ON quickstarter.projects_backers.backer = quickstarter.users.id
           WHERE quickstarter.projects.id = $1::integer;`, [id]);
-        client.set(id, JSON.stringify(result), 'EX', 60);
+        client.set(id, JSON.stringify(result));
       }
       const { title, creator, backers } = result.rows[0];
       const project = { title, creator, backers };
