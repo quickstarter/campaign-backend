@@ -1,44 +1,59 @@
+require('newrelic');
 const express = require('express');
-const utils = require('../db/utils.js');
 const cors = require('cors');
-
-// Middleware
 const parser = require('body-parser');
+const cluster = require('cluster');
+const cpuCount = require('os').cpus().length;
 
-const app = express();
-module.exports.app = app;
+const { pool, client } = require('../db/connect.js');
 
-// Set what we are listening on.
-app.set('port', (process.env.PORT || 3006));
+if (cluster.isMaster && cpuCount > 1) {
+  console.log(`Master ${process.pid} started`);
+  for (let i = 0; i < cpuCount; i++) {
+    cluster.fork();
+  }
 
-// Logging and parsing
-app.use(parser.json());
-
-// Serve the client files
-app.use(express.static(`${__dirname}/../client/dist`));
-
-// enabling CORS requests
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//   next();
-// });
-app.use(cors());
-
-// Handle Get requests
-app.get('/api/community/:id', (req, res) => {
-  console.log('Handling get request');
-  utils.loadProject(req.params.id, (project) => {
-    console.log(project);
-    var project = project[0];
-    console.log('Retrieving backers from project:', project);
-    utils.loadBackers(project.backerIds, (backers) => {
-      res.json([project, backers]);
-    });
+  cluster.on('exit', (worker, code) => {
+    if (code) {
+      console.log(`Worker ${worker.process.pid} killed by error, code ${code}`);
+    } else {
+      console.log(`Worker ${worker.process.pid} exited`);
+    }
   });
-});
+} else {
+  const app = express();
+  app.set('port', (process.env.PORT || 3006));
+  app.use(parser.json());
+  app.use(cors());
+  app.use(express.static(`${__dirname}/../client/dist`));
 
-if (!module.parent) {
-  app.listen(app.get('port'));
-  console.log('Listening on', app.get('port'));
+  app.get('/api/community/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+      const cache = await client.getAsync(id);
+      let result;
+      if (cache) {
+        result = JSON.parse(cache);
+      } else {
+        result = await pool.query(`
+          SELECT title, creator, backers, 
+            name, city, country, avatar, 
+            projects_backed AS "fundedProjects"
+          FROM quickstarter.projects 
+          INNER JOIN quickstarter.projects_backers 
+            ON quickstarter.projects.id = quickstarter.projects_backers.project
+          INNER JOIN quickstarter.users
+            ON quickstarter.projects_backers.backer = quickstarter.users.id
+          WHERE quickstarter.projects.id = $1::integer;`, [id]);
+        client.set(id, JSON.stringify(result));
+      }
+      const { title, creator, backers } = result.rows[0];
+      const project = { title, creator, backers };
+      res.json([project, result.rows]);
+    } catch (err) {
+      console.error(err);
+    }
+  });
+
+  app.listen(app.get('port'), () => console.log(`Worker ${process.pid} listening on ${app.get('port')}`));
 }

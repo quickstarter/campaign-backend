@@ -19,7 +19,7 @@ class Community extends Component {
 
   componentDidMount() {
     const context = this;
-    axios.get(`http://54.191.230.153:80/api/community/${this.props.projectId || 0}`)
+    axios.get(`http://127.0.0.1:3006/api/community/${this.props.projectId || 0}`)
       .then((response) => {
         context.setState({
           title: response.data[0].title,
