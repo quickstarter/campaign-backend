@@ -4,6 +4,7 @@ const cors = require('cors');
 const parser = require('body-parser');
 const cluster = require('cluster');
 const cpuCount = require('os').cpus().length;
+const path = require('path');
 
 const { pool, client } = require('../db/connect.js');
 
@@ -25,7 +26,10 @@ if (cluster.isMaster && cpuCount > 1) {
   app.set('port', (process.env.PORT || 3006));
   app.use(parser.json());
   app.use(cors());
-  app.use(express.static(`${__dirname}/../client/dist`));
+
+  app.get('/', (req, res) => res.sendFile(path.resolve('client/dist/index.html')));
+  app.get('/clientBundle', (req, res) => res.sendFile(path.resolve('client/dist/clientBundle.js')));
+  app.get('/serverBundle', (req, res) => res.sendFile(path.resolve('server/serverBundle.js')));
 
   app.get('/api/community/:id', async (req, res) => {
     const { id } = req.params;
