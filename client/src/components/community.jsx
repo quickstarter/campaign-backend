@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import TotalBackers from './TotalBackers.jsx';
 import BackersCities from './BackersCities.jsx';
 import BackersCountries from './BackersCountries.jsx';
