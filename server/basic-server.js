@@ -49,7 +49,7 @@ if (cluster.isMaster && cpuCount > 1) {
       }
       const { title, creator, backers } = result.rows[0];
       const project = { title, creator, backers };
-      res.json([project, result.rows]);
+      res.json({ project, backers: result.rows });
     } catch (err) {
       console.error(err);
     }
