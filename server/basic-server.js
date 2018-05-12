@@ -29,6 +29,7 @@ if (cluster.isMaster && cpuCount > 1) {
 
   app.get('/', (req, res) => res.sendFile(path.resolve('client/dist/index.html')));
   app.get('/clientBundle', (req, res) => res.sendFile(path.resolve('client/dist/clientBundle.js')));
+  app.get('/clientFetchBundle', (req, res) => res.sendFile(path.resolve('client/dist/clientFetchBundle.js')));
   app.get('/serverBundle', (req, res) => res.sendFile(path.resolve('server/serverBundle.js')));
 
   app.get('/api/community/:id', async (req, res) => {

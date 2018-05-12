@@ -4,3 +4,4 @@ client/dist/bundle.js
 newrelic_agent.log
 serverBundle.js
 clientBundle.js
+clientFetchBundle.js
