@@ -22,12 +22,8 @@ class Community extends Component {
   componentDidMount() {
     const context = this;
     axios.get(`http://127.0.0.1:3006/api/community/${this.props.projectId || 0}`)
-      .then((response) => {
-        context.setState({
-          title: response.data[0].title,
-          creator: response.data[0].creator,
-          backers: response.data[1],
-        });
+      .then(({ data: { title, creator, backers } }) => {
+        context.setState({ title, creator, backers });
       })
       .catch((error) => {
         console.log('There was an error fetching this project:', error);

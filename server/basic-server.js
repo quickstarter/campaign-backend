@@ -26,11 +26,7 @@ if (cluster.isMaster && cpuCount > 1) {
   app.set('port', (process.env.PORT || 3006));
   app.use(parser.json());
   app.use(cors());
-
-  app.get('/', (req, res) => res.sendFile(path.resolve('client/dist/index.html')));
-  app.get('/clientBundle', (req, res) => res.sendFile(path.resolve('client/dist/clientBundle.js')));
-  app.get('/clientFetchBundle', (req, res) => res.sendFile(path.resolve('client/dist/clientFetchBundle.js')));
-  app.get('/serverBundle', (req, res) => res.sendFile(path.resolve('server/serverBundle.js')));
+  app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));
 
   app.get('/api/community/:id', async (req, res) => {
     const { id } = req.params;
@@ -52,9 +48,8 @@ if (cluster.isMaster && cpuCount > 1) {
           WHERE quickstarter.projects.id = $1::integer;`, [id]);
         client.set(id, JSON.stringify(result));
       }
-      const { title, creator, backers } = result.rows[0];
-      const project = { title, creator, backers };
-      res.json({ project, backers: result.rows });
+      const { title, creator } = result.rows[0];
+      res.json({ title, creator, backers: result.rows });
     } catch (err) {
       console.error(err);
     }

@@ -5,7 +5,7 @@ const serverConfig = {
   mode: 'development',
   entry: './server/serverBundleEntry.js',
   output: {
-    path: path.resolve(__dirname, 'server'),
+    path: path.resolve(__dirname, 'client/dist'),
     filename: 'serverBundle.js',
     library: 'Community',
     libraryTarget: 'umd', // Make it requireable
