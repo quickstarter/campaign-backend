@@ -13,9 +13,9 @@ class Community extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: props.data.project.title,
-      creator: props.data.project.creator,
-      backers: props.data.backers,
+      title: '',
+      creator: '',
+      backers: [],
     };
   }
 
