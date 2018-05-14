@@ -9,8 +9,15 @@ class NewAndOldBackers extends Component {
     };
   }
 
+  componentDidMount() {
+    this.updateBackers();
+  }
 
   componentDidUpdate() {
+    this.updateBackers();
+  }
+
+  updateBackers() {
     const { backers } = this.props;
     let newBackers = 0;
     let oldBackers = 0;
@@ -28,7 +35,6 @@ class NewAndOldBackers extends Component {
       });
     }
   }
-
 
   render() {
     return (
