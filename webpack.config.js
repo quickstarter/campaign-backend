@@ -1,5 +1,4 @@
 const path = require('path');
-const nodeExternals = require('webpack-node-externals');
 
 const serverConfig = {
   target: 'node',
@@ -31,12 +30,12 @@ const serverConfig = {
   },
 };
 
-const clientConfig = {
+const clientServerDataConfig = {
   target: 'web',
   mode: 'development',
-  entry: './client/src/components/community.jsx',
+  entry: './client/src/components/community-serverdata.jsx',
   output: {
-    filename: 'clientBundle.js',
+    filename: 'clientServerDataBundle.js',
     path: path.resolve(__dirname, 'client/dist'),
     library: 'Community',
     libraryTarget: 'var', // Make it a global variable
@@ -63,12 +62,12 @@ const clientConfig = {
   },
 };
 
-const clientFetchConfig = {
+const clientFetchDataConfig = {
   target: 'web',
   mode: 'development',
   entry: './client/src/components/community-fetchdata.jsx',
   output: {
-    filename: 'clientFetchBundle.js',
+    filename: 'clientFetchDataBundle.js',
     path: path.resolve(__dirname, 'client/dist'),
     library: 'Community',
     libraryTarget: 'var', // Make it a global variable
@@ -95,4 +94,4 @@ const clientFetchConfig = {
   },
 };
 
-module.exports = [serverConfig, clientConfig, clientFetchConfig];
+module.exports = [serverConfig, clientServerDataConfig, clientFetchDataConfig];
