@@ -3,5 +3,5 @@ node_modules/
 client/dist/bundle.js
 newrelic_agent.log
 serverBundle.js
-clientBundle.js
-clientFetchBundle.js
+clientServerDataBundle.js
+clientFetchDataBundle.js
