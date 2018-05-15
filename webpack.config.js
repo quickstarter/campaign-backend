@@ -1,97 +1,62 @@
 const path = require('path');
 
-const serverConfig = {
+const sharedConfig = {
+  mode: 'development',
+  devtool: '#eval-source-map',
+  output: {
+    path: path.resolve(__dirname, 'client/dist'),
+    library: 'Community',
+  },
+  module: {
+    rules: [
+      {
+        test: /.jsx?$/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015', 'react'],
+        },
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' },
+        ],
+      },
+    ],
+  },
+};
+
+const serverConfig = Object.assign({}, sharedConfig, {
   target: 'node',
-  mode: 'development',
   entry: './server/serverBundleEntry.js',
-  output: {
-    path: path.resolve(__dirname, 'client/dist'),
+  output: Object.assign({
     filename: 'serverBundle.js',
-    library: 'Community',
     libraryTarget: 'umd', // Make it requireable
-  },
-  module: {
-    rules: [
-      {
-        test: /.jsx?$/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015', 'react'],
-        },
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          { loader: 'css-loader' },
-          { loader: 'sass-loader' },
-        ],
-      },
-    ],
-  },
-};
+  }, sharedConfig.output),
+});
 
-const clientServerDataConfig = {
+const clientSharedConfig = Object.assign({}, sharedConfig, {
   target: 'web',
-  mode: 'development',
+  output: Object.assign({
+    library: 'Community',
+    libraryTarget: 'var', // Make it a global variable
+    libraryExport: 'default',
+  }, sharedConfig.output),
+});
+
+const clientServerDataConfig = Object.assign({}, clientSharedConfig, {
   entry: './client/src/components/community-serverdata.jsx',
-  output: {
+  output: Object.assign({
     filename: 'clientServerDataBundle.js',
-    path: path.resolve(__dirname, 'client/dist'),
-    library: 'Community',
-    libraryTarget: 'var', // Make it a global variable
-    libraryExport: 'default',
-  },
-  devtool: '#eval-source-map',
-  module: {
-    rules: [
-      {
-        test: /.jsx?$/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015', 'react'],
-        },
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          { loader: 'css-loader' },
-          { loader: 'sass-loader' },
-        ],
-      },
-    ],
-  },
-};
+  }, clientSharedConfig.output),
+});
 
-const clientFetchDataConfig = {
-  target: 'web',
-  mode: 'development',
+const clientFetchDataConfig = Object.assign({}, clientSharedConfig, {
   entry: './client/src/components/community-fetchdata.jsx',
-  output: {
+  output: Object.assign({
     filename: 'clientFetchDataBundle.js',
-    path: path.resolve(__dirname, 'client/dist'),
-    library: 'Community',
-    libraryTarget: 'var', // Make it a global variable
-    libraryExport: 'default',
-  },
-  devtool: '#eval-source-map',
-  module: {
-    rules: [
-      {
-        test: /.jsx?$/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015', 'react'],
-        },
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          { loader: 'css-loader' },
-          { loader: 'sass-loader' },
-        ],
-      },
-    ],
-  },
-};
+  }, clientSharedConfig.output),
+});
 
 module.exports = [serverConfig, clientServerDataConfig, clientFetchDataConfig];
